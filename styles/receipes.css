@@ -1,0 +1,19 @@
+#parent{
+    display:grid;
+    grid-template-columns: repeat(3,1fr);
+    gap:10px;
+    
+}
+#navbar{
+       display: flex;
+       justify-content: space-between;
+     
+       background-color: black;
+   }
+   input{
+       height:20px;margin-top: 15px;margin-left: 10px;
+
+   }
+   h3{
+       padding-right: 20px;
+   }

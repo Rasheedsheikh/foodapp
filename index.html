@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+  
+    <link rel="stylesheet" href="./Styles/index.css">
+</head>
+<body>
+    <div id="navbar">
+        <input id="container" type="text" oninput="search()"/>
+        <h3><a href="index.html">Home</a></h3>
+        <h3><a href="famous.html">Day Special</a></h3>
+        <h3><a href="receipes.html">Receipes</a></h3>
+    </div>
+    
+    <div id="display"></div>
+</body>
+</html>
+<script>
+
+
+    let dis=document.getElementById('display')
+  
+
+    let search= async()=> {
+        try{
+      let cont=document.getElementById('container').value 
+      
+      let res= await fetch(`https://www.themealdb.com/api/json/v1/1/search.php?s=${cont}`);
+      let data=await res.json();
+    //   console.log("data:",data)
+
+      appendItems(data.meals)
+      return (data.meals);
+        }
+        catch(err){
+            console.log("err:",err)
+        }
+     
+
+    }
+
+     const appendItems= (data)=>{
+     dis.innerHTML=null;
+// console.log("data:",data)
+    if(data=== undefined){
+        return false;
+    }
+    
+     data.forEach((el)=>{
+                 let div=document.createElement('div')
+
+                 let img=document.createElement('img')
+                 img.src=el.strMealThumb;
+
+                 let name=document.createElement('p')
+                 name.innerText=el.strMeal;
+
+                 div.append(img,name)
+               dis.append(div)
+
+     })
+     }
+  
+     
+</script>
